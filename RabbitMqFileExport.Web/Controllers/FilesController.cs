@@ -23,7 +23,7 @@ namespace RabbitMqFileExport.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> AddFile(string fileName)
         {
-            await _context.ExcelFiles.AddAsync(new ExcelFile {Name = $"{fileName}_{Guid.NewGuid().ToString().Substring(1, 15)}.xlsx"});
+            await _context.ExcelFiles.AddAsync(new ExcelFile {Name = $"{fileName}_{Guid.NewGuid().ToString().Substring(1, 15)}.xlsx",status=EFileStatus.Creating});
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
