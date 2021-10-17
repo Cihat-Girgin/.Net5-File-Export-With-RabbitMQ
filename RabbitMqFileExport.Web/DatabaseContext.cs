@@ -14,5 +14,24 @@ namespace RabbitMqFileExport.Web
             
         }
         public DbSet<Company> Companies { get; set; }
+        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            
+            List<Company> companies = new();
+            
+            Enumerable.Range(1,500).ToList().ForEach(x =>
+            {
+                companies.Add(new Company
+                {
+                    Id = x,
+                    Title = Faker.Company.Name(),
+                    City = Faker.Address.City(),
+                    Country =   Faker.Address.Country(),
+                    TaxNo = Faker.RandomNumber.Next(1000000000,9999999999)
+                });
+            });
+            modelBuilder.Entity<Company>().HasData(companies);
+        }
     }
 }
