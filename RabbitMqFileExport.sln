@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqFileExport.Web", "R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqFileExport.Model", "RabbitMqFileExport.Model\RabbitMqFileExport.Model.csproj", "{C39AAF5B-09E9-4D5D-AE15-4873F9AC9A42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqFileExport.WorkerService", "RabbitMqFileExport.WorkerService\RabbitMqFileExport.WorkerService.csproj", "{D5E4154D-8E55-456F-83F4-6EA9419C6245}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C39AAF5B-09E9-4D5D-AE15-4873F9AC9A42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C39AAF5B-09E9-4D5D-AE15-4873F9AC9A42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C39AAF5B-09E9-4D5D-AE15-4873F9AC9A42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5E4154D-8E55-456F-83F4-6EA9419C6245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5E4154D-8E55-456F-83F4-6EA9419C6245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5E4154D-8E55-456F-83F4-6EA9419C6245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5E4154D-8E55-456F-83F4-6EA9419C6245}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
