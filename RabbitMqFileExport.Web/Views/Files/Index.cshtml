@@ -7,7 +7,23 @@
 
 <h2>Files</h2>
 
-
+@section Scripts
+{
+   <script>
+       $(document).ready(function () {
+           var hasStartCreatingExcel = '@TempData["StartCreatingExcel"]';
+           if (hasStartCreatingExcel) {
+               Swal.fire({
+                   position: 'top-end',
+                   icon: 'success',
+                   title: 'Excel creation process has started. You will receive notification when finished.',
+                   showConfirmButton: false,
+                  timer:2500
+               })
+           }
+       })
+   </script>
+}
 
 <div class="container mt-5">
 
@@ -33,7 +49,7 @@
                     <th scope="row">@item.Id</th>
                     <td>@item.Name</td>
                     <td>@item.status</td>
-                    <td><a href="" class="btn-link">Download</a></td>
+                    <td><a href="~/files/@item.Name" class="btn-link">Download</a></td>
                 </tr>
             }
             </tbody>

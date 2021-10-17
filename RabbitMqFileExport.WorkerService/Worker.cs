@@ -40,7 +40,7 @@ namespace RabbitMqFileExport.WorkerService
 
          _channel=_rabbitMQClientService.Connect();
             _channel.BasicQos(0, 1, false);
-
+            _logger.LogInformation("Connected to RabbitMq successfully");
             return base.StartAsync(cancellationToken);
         }
 

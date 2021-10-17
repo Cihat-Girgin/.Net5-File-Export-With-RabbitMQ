@@ -32,6 +32,7 @@ namespace RabbitMqFileExport.Web.Controllers
             await _context.ExcelFiles.AddAsync(excelFile);
             await _context.SaveChangesAsync();
             _publisher.Publish(new FileMessage{FileId = excelFile.Id});
+            TempData["StartCreatingExcel"] = true;
             return RedirectToAction(nameof(Index));
         }
     }

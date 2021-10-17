@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RabbitMQ.Client;
+using RabbitMqFileExport.Web.Hubs;
 using RabbitMqFileExport.Web.RabbitMqServices;
 
 namespace RabbitMqFileExport.Web
@@ -35,7 +36,7 @@ namespace RabbitMqFileExport.Web
                 options.UseSqlServer(Configuration.GetConnectionString("SqlServer"));
             });
             services.AddControllersWithViews();
-            
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,9 +58,10 @@ namespace RabbitMqFileExport.Web
             app.UseRouting();
 
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<NotificationHub>("/NotificationHub");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Companies}/{action=Index}/{id?}");

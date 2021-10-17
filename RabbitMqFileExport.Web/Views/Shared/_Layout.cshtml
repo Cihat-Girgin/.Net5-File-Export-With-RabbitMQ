@@ -43,6 +43,36 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="~/lib/microsoft-signalr/signalr.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        $(document).ready(function () {
+            var connection = new signalR.HubConnectionBuilder().withUrl("/NotificationHub").build();
+            start();
+            function start() {
+                connection.start().then().catch((err) => {
+                    console.log(err);
+                    setTimeout(() => start(), 2000);
+                })
+            }
+            connection.on("CompletedFile", () => {
+                console.log("dasdasdasdasdasdas")
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your excel file is ready!',
+                    showConfirmButton: true,
+                    confirmButtonText: "Files"
+
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = "/Files/Index";
+                    }
+                })
+            });
+        })
+    </script>
 </body>
 </html>

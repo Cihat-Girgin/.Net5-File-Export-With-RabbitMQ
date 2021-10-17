@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using RabbitMqFileExport.Model;
+using RabbitMqFileExport.Web.Hubs;
 
 namespace RabbitMqFileExport.Web.Controllers
 {
@@ -16,10 +18,12 @@ namespace RabbitMqFileExport.Web.Controllers
     public class UploadController : ControllerBase
     {
         private readonly DatabaseContext _context;
+        private readonly IHubContext<NotificationHub> _hubContext;
 
-        public UploadController(DatabaseContext context)
+        public UploadController(DatabaseContext context, IHubContext<NotificationHub> hubContext)
         {
             _context = context;
+            _hubContext = hubContext;
         }
 
         [HttpPost]
@@ -51,11 +55,7 @@ namespace RabbitMqFileExport.Web.Controllers
                 throw;
             }
             
-            //SignalR notification oluşturulacak
-//            await _hubContext.Clients.User(userFile.UserId).SendAsync("CompletedFile");
-
-
-
+            await _hubContext.Clients.All.SendAsync("CompletedFile");
             return Ok();
         }
     }
