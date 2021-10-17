@@ -9,7 +9,7 @@ namespace RabbitMqFileExport.Web.RabbitMqServices
         private IConnection _connection;
         private IModel _channel;
         public static string ExchangeName = "ExcelDirectExchange";
-        public static string RoutingExcel = "excel-route-file";
+        public static string RoutingFile = "excel-route-file";
         public static string QueueName = "queue-excel-file";
 
         private readonly ILogger<RabbitMqClientService> _logger;
@@ -32,7 +32,7 @@ namespace RabbitMqFileExport.Web.RabbitMqServices
             _channel = _connection.CreateModel();
             _channel.ExchangeDeclare(ExchangeName, type: "direct", true, false);
             _channel.QueueDeclare(QueueName, true, false, false, null);
-            _channel.QueueBind(exchange: ExchangeName, queue: QueueName, routingKey: RoutingExcel);
+            _channel.QueueBind(exchange: ExchangeName, queue: QueueName, routingKey: RoutingFile);
             _logger.LogInformation("Connected to RabbitMQ ");
            
             return _channel;

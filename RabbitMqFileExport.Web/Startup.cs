@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using RabbitMQ.Client;
+using RabbitMqFileExport.Web.RabbitMqServices;
 
 namespace RabbitMqFileExport.Web
 {
@@ -24,6 +26,10 @@ namespace RabbitMqFileExport.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(sp => new ConnectionFactory() { Uri = new Uri(Configuration.GetSection("RabbitMQ").Value), DispatchConsumersAsync = true });
+
+            services.AddSingleton<RabbitMqPublisher>();
+            services.AddSingleton<RabbitMqClientService>();
             services.AddDbContext<DatabaseContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("SqlServer"));
