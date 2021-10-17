@@ -24,7 +24,6 @@ namespace RabbitMqFileExport.Web.RabbitMqServices
             var properties = channel.CreateBasicProperties();
             properties.Persistent = true;
 
-           // channel.BasicPublish(exchange: RabbitMqClientService.ExchangeName, routingKey: RabbitMqClientService.RoutingExcel, basicProperties: properties, body: bodyByte);
             channel.BasicPublish(RabbitMqClientService.ExchangeName,RabbitMqClientService.RoutingFile,false,properties,bodyByte);
 
         }
