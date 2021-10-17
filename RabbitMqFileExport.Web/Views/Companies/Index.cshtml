@@ -1,7 +1,7 @@
 ﻿@model List<RabbitMqFileExport.Model.Company>
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Companies";
     Layout = "_Layout";
 }
 
@@ -13,9 +13,9 @@
             <h4>Companies</h4>
         </div>
         <div class="col-6">
-            <form class="form-inline float-right">
+            <form asp-controller="Files" asp-action="AddFile" method="post" class="form-inline float-right">
                 <div class="form-group mx-sm-3 mb-2">
-                    <input type="password" required class="form-control" name="fileName" placeholder="Enter file name">
+                    <input type="text" required class="form-control" name="fileName" placeholder="Enter file name">
                 </div>
                 <button type="submit" class="btn btn-success btn-sm mb-2">Create Excel </button>
             </form>
