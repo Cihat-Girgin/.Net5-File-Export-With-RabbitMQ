@@ -1,8 +1,45 @@
-﻿@model dynamic
+﻿@model List<RabbitMqFileExport.Model.Company>
 
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
 }
 
-<h2>title</h2>
+
+<div class="container mt-5">
+
+    <div class="row">
+        <div class="col-6">
+            <h4>Companies</h4>
+        </div>
+        <div class="col-6">
+            <button type="button" class="btn btn-success btn-sm float-right">Export Excel</button>
+        </div>
+
+    </div>
+    <div class="row mt-3 float-none">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Title</th>
+                <th scope="col">City</th>
+                <th scope="col">Country</th>
+                <th scope="col">Tax No</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.Id</th>
+                    <td>@item.Title</td>
+                    <td>@item.City</td>
+                    <td>@item.Country</td>
+                    <td>@item.TaxNo</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

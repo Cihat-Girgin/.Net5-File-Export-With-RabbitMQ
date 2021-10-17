@@ -15,7 +15,7 @@ namespace RabbitMqFileExport.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(_context.Companies.ToListAsync());
+            return View(await _context.Companies.ToListAsync());
         }
     }
 }
